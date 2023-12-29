@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <style>
+    
+      /* css start  */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+      }
+
+      /* Global styles */
+      :root {
+        --font-family: "Poppins", sans-serif;
+        --primary-color: #0d2257;
+        --secondary-color: #00b7ff;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--font-family);
+        background-color: rgb(64, 61, 66); /* Placeholder color */
+      }
+
+      /* Navigation styles */
+      #navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+
+      #menu {
+        width: 35px;
+        height: 30px;
+        cursor: pointer;
+      }
+
+      .bar {
+        height: 5px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 5px;
+        transition: 0.3s ease;
+      }
+
+      #bar1 {
+        transform: translateY(-4px);
+      }
+
+      #bar3 {
+        transform: translateY(4px);
+      }
+
+      /* Main navigation styles */
+      #nav {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        width: 400px;
+        position: absolute;
+        overflow: auto;
+        top: 0;
+        left: 0;
+        transition: transform 0.5s ease;
+        transform: translateX(-100%);
+        box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.2);
+      }
+
+      #nav.open {
+        transform: translateX(0);
+      }
+      .main_menu {
+        margin: 0;
+        padding: 0;
+        transform: translateX(0);
+      }
+
+
+      .main_menu li {
+        border-bottom: 1px solid gray;
+        padding-left: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        list-style: none;
+      }
+
+      .main_menu a {
+        color: #fff;
+        letter-spacing: -0.4px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 550;
+        transition: color 0.5s ease;
+      }
+
+      .main_menu a:hover {
+        color: var(--secondary-color);
+      }
+
+      .main_menu_none {
+        visibility: hidden;
+        height: 0;
+      }
+
+      #close-btn {
+        background-color: transparent;
+        color: rgb(247, 245, 245);
+        border: none;
+        margin: 20px 20px 0 auto;
+        cursor: pointer;
+        font-size: 16px;
+        font-style: italic;
+      }
+
+      .contact {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+      }
+
+      .contact button {
+        height: 50px;
+        border: none;
+        background-color: var(--secondary-color);
+        width: 160px;
+        color: rgb(56, 55, 55);
+        font-size: 14px;
+        font-weight: 550;
+        cursor: pointer;
+      }
+
+      .contact button:hover{
+        background-color: white;
+      }
+
+      .contact button:nth-child(2) {
+        background-color: white;
+      }
+
+      .contact button:nth-child(2):hover{
+        background-color: var(--secondary-color);
+      }
+
+      .follow-us {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--secondary-color);
+      }
+
+      .follow-us h4 {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .follow-us div {
+        display: flex;
+        font-size: 20px;
+        align-items: center;
+        gap: 35px;
+      }
+
+      .follow-us div span {
+        font-size: 22px;
+        cursor: pointer;
+      }
+      .follow-us div span:hover{
+        color: white;
+      }
+      #li-hvac {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #hvac-arrow {
+        margin-right: 20px;
+        cursor: pointer;
+        color: var(--secondary-color);
+      }
+
+      #inner_menu {
+        padding: 0;
+        margin: 0;
+        visibility: hidden;
+        height: 0;
+        background-color: var(--primary-color);
+        transition: transform 0.5s ease;
+        transform: translateX(-100%);
+      }
+
+      #inner_menu.open1 {
+        transform: translateX(0);
+        display: flex;
+        flex-direction: column;
+        visibility: visible;
+        height: auto;
+      }
+
+      .inner_menu {
+        margin: 0;
+        padding: 0;
+      }
+
+      .inner_menu button {
+        display: flex;
+        gap: 10px;
+        justify-content: start;
+        padding: 20px;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 16px;
+      }
+
+      .inner_menu button i {
+        color: var(--secondary-color);
+        font-size: 18px;
+      }
+
+      .inner_menu button span {
+        font-size: 16px;
+        color: #232222;
+        font-weight: 600;
+      }
+      .inner_menu li {
+        border-bottom: 1px solid gray;
+        padding-left: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        list-style: none;
+      }
+
+      .inner_menu a {
+        color: #fff;
+        letter-spacing: -0.4px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 550;
+        transition: color 0.5s ease;
+      }
+
+      .inner_menu a:hover {
+        color: var(--secondary-color);
+      }
+
+      .li-with-down-arrow i {
+        color: var(--secondary-color);
+        cursor: pointer;
+        float: right;
+        margin-right: 20px;
+      }
+      #main_menu.ulnone {
+        display: none;
+      }
+
+      .submenu {
+        visibility: hidden;
+        height: 0;
+        list-style-type: none;
+        width: 350px;
+        transition: transform 0.5s ease;
+        transform: translateY(-100%);
+      }
+
+      .open-submenu {
+        display: block;
+        visibility: visible;
+        height: auto;
+        transform: translateY(0);
+        margin: 0;
+        padding: 0;
+      }
+
+      .submenu li {
+        margin-top: 20px;
+      }
+
+      /* responsive code  */
+      @media screen and (max-width: 500px) {
+ #nav{
+    width: 100%;
+ }
+}
+
+      /* css end  */
+    </style>
+  </head>
+  <body>
+    <!-- header  start -->
+    <header id="navigation">
+      <!-- hamburger menu start -->
+      <div id="menu" class="menu-toggle">
+        <div class="bar" id="bar1"></div>
+        <div class="bar" id="bar2"></div>
+        <div class="bar" id="bar3"></div>
+      </div>
+      <!-- hamburger menu end -->
+
+      <!-- nav start  -->
+      <nav class="nav" id="nav">
+        <!-- cross button start  -->
+        <button id="close-btn">Close X</button>
+        <!-- cross button end  -->
+
+        <!-- main_menu start  -->
+        <ul class="main_menu" id="main_menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li id="li-hvac">
+            <a href="#">HVAC Services</a>
+            <span id="hvac-arrow" onclick="innerMenu()"
+              ><i class="fas fa-arrow-right"></i
+            ></span>
+          </li>
+          <li><a href="#">Our Recent Work</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Site Map</a></li>
+        </ul>
+        <!-- main_menu start  -->
+
+        <!-- inner_menu start  -->
+        <ul id="inner_menu" class="inner_menu">
+          <button onclick="bactToMainMenu()">
+            <i class="fas fa-arrow-left"></i>
+            <span>Main Menu</span>
+          </button>
+          <li><a href="#">AC Installation & Replacement</a></li>
+          <li><a href="#">AC Repair</a></li>
+          <li class="li-with-down-arrow">
+            <a href="#"><span>Air Quality Services</span></a
+            ><i
+              class="fas fa-arrow-down"
+              id="icon"
+              onclick="toggleSubMenu()"
+            ></i>
+            <!-- submenu of inner_menu start   -->
+            <ul id="submenu" class="submenu">
+              <li><a href="#">Humidifiers</a></li>
+            </ul>
+            <!-- submenu of inner_menu start   -->
+          </li>
+          <li><a href="#">AC Maintenance</a></li>
+          <li><a href="#">Heater Installation & Replacement</a></li>
+          <li><a href="#">Emergency HVAC Services</a></li>
+        </ul>
+        <!-- inner_menu end  -->
+
+        <!-- contact start  -->
+        <div class="contact">
+          <button>Contact Us</button>
+          <button>Call Us Today!</button>
+          <div class="follow-us">
+            <h4>Follow Us</h4>
+            <div>
+              <span><i class="fab fa-instagram"></i></span>
+              <span><i class="fab fa-facebook"></i></span>
+            </div>
+          </div>
+        </div>
+        <!-- contact end  -->
+      </nav>
+      <!-- nav start  -->
+    </header>
+    <!-- header  end -->
+
+    <!-- javascript start  -->
+    <script>
+
+
+$(document).ready(function(){
+  $("#menu").click(function(){
+    $(".nav").addClass("open");
+  });
+
+  $("#close-btn").click(function(){
+    $(".nav").removeClass("open");
+  });
+});
+
+
+
+      // function toggleMenu() {
+      //   const menu = document.getElementById("menu");
+      //   const nav = document.getElementById("nav");
+      //   menu.classList.toggle("icon");
+      //   nav.classList.toggle("open");
+      // }
+      function innerMenu() {
+        const showMenu = document.getElementById("inner_menu");
+        const main_menu = document.getElementById("main_menu");
+        showMenu.classList.toggle("open1");
+        main_menu.classList.toggle("ulnone");
+      }
+
+      function bactToMainMenu() {
+        const showMenu = document.getElementById("inner_menu");
+        const ul = document.getElementById("main_menu");
+        showMenu.classList.toggle("open1");
+        ul.classList.toggle("ulnone");
+      }
+
+      function backToMainMenu() {
+        const mainMenu = document.getElementById("inner_menu");
+        mainMenu.classList.toggle("open1");
+      }
+
+      function toggleSubMenu() {
+        let icon = document.getElementById("icon");
+        const submenu = document.getElementById("submenu");
+        submenu.classList.toggle("open-submenu");
+        if (icon.classList.contains("fa-arrow-down")) {
+          icon.classList.remove("fa-arrow-down");
+          icon.classList.add("fa-arrow-up");
+        } else {
+          submenu.classList.remove("open-submenu");
+          icon.classList.remove("fa-arrow-up");
+          icon.classList.add("fa-arrow-down");
+        }
+      }
+
+      // javascript end
+    </script>
+  </body>
+</html>
